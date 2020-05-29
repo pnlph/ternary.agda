@@ -117,8 +117,7 @@ module _ {e} {_≈ₐ_ : A → A → Set e} {u}
 
   instance market-isMonoid : IsPartialMonoid _≈_ market-rel (demand ε)
   market-isMonoid = IsPartialMonoidˡ.partialMonoidˡ record
-    { ε-uniq     = λ where (demands z) → cong demand (ε-unique z)
-    ; identityˡ  = λ where
+    { identityˡ  = λ where
         {supply l}  → supplyᵣ (IsPartialMonoid.∙-idˡ m)
         {demand r} → demand (IsPartialMonoid.∙-idˡ m)
     ; identity⁻ˡ = λ where
@@ -127,7 +126,7 @@ module _ {e} {_≈ₐ_ : A → A → Set e} {u}
     }
 
   -- matching : ∀ {a b : A} {c d} → (demand a) ∙ (supply b) ≣ c → (demand (d ∙ a)) ∙ (supply (d ∙ b)) ≣ c
-  -- matching (supplyᵣ σ) = supplyᵣ (∙-∙ₗ σ)
+  -- matching (supplyᵣ σ) = supplyᵣ (∙-disjointₗ σ)
 
   -- module _ {p q} {P : Pred A p} {Q : Pred (A × A) q} where
     -- ○≺●ₗ : ∀[ P ⇒ (● Q ─✴ ● (Π₂ P ✴ Q)) ∘ demand ]
